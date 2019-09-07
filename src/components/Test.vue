@@ -3,6 +3,7 @@
         <div @click="clickFun">
             test-{{message}}
             <div>{{type}}</div>
+            <div>{{$store.state.home.userName}}</div>
             <div>
                 Clicked: {{ store.count }} times, count is {{ evenOrOdd }}.
                 <button @click="increment">+</button>
