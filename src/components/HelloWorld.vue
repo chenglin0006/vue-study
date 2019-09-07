@@ -25,7 +25,21 @@ export default {
         },
         changeUserNameFun: function () {
             this.message = '123123';
-            this.$store.dispatch('changeUserName',{str:'cl'})
+            this.$store.dispatch('changeUserName',
+            {
+                payload:{
+                    param:{
+                        curpage:1,
+                        pageSize:10,
+                    },
+                    type:'get',
+                    url:'http://product-dev.bnq.com.cn/productAdmin/skuBarcode/list',
+
+                },
+                cb:(data)=>{
+                    console.log('data:',data)
+                }
+            })
         }
     }
 }

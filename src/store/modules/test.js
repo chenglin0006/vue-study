@@ -25,7 +25,7 @@ const actions = {
         return new Promise((resolve, reject) => {
             setTimeout(() => {
                 commit('increment')
-                resolve()
+                resolve(state.count)
             }, 1000)
         })
     }

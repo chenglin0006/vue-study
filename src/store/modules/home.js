@@ -1,14 +1,17 @@
+import * as Util from '../../util/index'
 const state = {
     userName:'chenglin'
 };
 const mutations = {
-    changeUserName (state,strObj) {
-        state.userName=state.userName+(strObj.str||'c')
+    changeUserName (state,data) {
+        state.userName=state.userName+(data.msg||'c')
     }
 };
 const actions = {
-    changeUserName ({ commit, state }, strObj) { 
-        commit('changeUserName',strObj)
+    async changeUserName ({ commit, state }, argus) { 
+        let data = await Util.fetchFun(argus.payload);
+        argus.cb&&argus.cb(data);
+        commit('changeUserName',data)
     }
 };
 const getters = {
