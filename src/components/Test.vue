@@ -3,6 +3,7 @@
         <div @click="clickFun">
             test-{{message}}
             <div>{{type}}</div>
+            <div>{{store.useName}}</div>
             <div>
                 Clicked: {{ store.count }} times, count is {{ evenOrOdd }}.
                 <button @click="increment">+</button>
@@ -15,6 +16,7 @@
                     <span>{{todo.text}}</span>
                 </div>
             </div>
+            <div>{{countBig}}</div>
         </div>
     </transition>
 </template>
@@ -36,23 +38,30 @@ export default {
             ]
         }
     },
-    computed: mapGetters([
-        'evenOrOdd'
-    ]),
+    computed: {
+        ...mapGetters([
+            'evenOrOdd'
+        ]),
+        countBig: function () {
+            // `this` 指向 vm 实例
+            return this.store.count>15?true:false
+        }
+    },
     mounted(){
         this.type=this.$route.query.type;
         console.log(this.store.count,'------')
     },
     methods: {
-        clickFun: function () {
-            this.message = '123123';
-        },
         ...mapActions([
             'increment',
             'decrement',
             'incrementIfOdd',
             'incrementAsync'
-        ])
+        ]),
+        clickFun: function () {
+            this.message = '123123';
+            this.$store.dispatch('changeUseName',{str:'cl'})
+        }
     }
 }
 </script>

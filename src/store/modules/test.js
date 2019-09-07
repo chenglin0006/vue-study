@@ -4,7 +4,7 @@ const state = {
         { id: 1, text: '...', done: true },
         { id: 2, text: '...', done: false }
     ],
-    count: 11
+    count: 11,
 };
 const mutations = {
     increment (state) {
@@ -12,6 +12,9 @@ const mutations = {
     },
     decrement (state) {
         state.count--
+    },
+    changeUseName (state,strObj) {
+        state.useName=state.useName+(strObj.str||'c')
     }
 };
 const actions = {
@@ -25,10 +28,13 @@ const actions = {
     incrementAsync ({ commit }) {
         return new Promise((resolve, reject) => {
             setTimeout(() => {
-            commit('increment')
-            resolve()
+                commit('increment')
+                resolve()
             }, 1000)
         })
+    },
+    changeUseName ({ commit, state }, strObj) { 
+        commit('changeUseName',strObj)
     }
 };
 const getters = {
