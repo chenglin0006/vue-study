@@ -67,7 +67,7 @@ module.exports = {
     bundleAnalyzerReport: process.env.npm_config_report
   },
 
-  build: {
+  production: {
     // Template for index.html
     index: path.resolve(__dirname, '../dist/index.html'),
 
