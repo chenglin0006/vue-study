@@ -3,7 +3,6 @@
         <div @click="clickFun">
             test-{{message}}
             <div>{{type}}</div>
-            <div>{{store.useName}}</div>
             <div>
                 Clicked: {{ store.count }} times, count is {{ evenOrOdd }}.
                 <button @click="increment">+</button>
@@ -60,7 +59,7 @@ export default {
         ]),
         clickFun: function () {
             this.message = '123123';
-            this.$store.dispatch('changeUseName',{str:'cl'})
+            this.$store.dispatch('increment')
         }
     }
 }

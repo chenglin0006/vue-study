@@ -1,5 +1,4 @@
 const state = {
-    useName: "sam",
     todos: [
         { id: 1, text: '...', done: true },
         { id: 2, text: '...', done: false }
@@ -12,9 +11,6 @@ const mutations = {
     },
     decrement (state) {
         state.count--
-    },
-    changeUseName (state,strObj) {
-        state.useName=state.useName+(strObj.str||'c')
     }
 };
 const actions = {
@@ -32,9 +28,6 @@ const actions = {
                 resolve()
             }, 1000)
         })
-    },
-    changeUseName ({ commit, state }, strObj) { 
-        commit('changeUseName',strObj)
     }
 };
 const getters = {
