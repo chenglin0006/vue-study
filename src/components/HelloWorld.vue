@@ -19,6 +19,9 @@ export default {
     computed: {
       
     },
+    mounted(){
+        console.log(process.env.NODE_ENV,'=====')
+    },
     methods:{
         testPush:function(){
           this.$router.push({path:'/test',query:{type:'push'}});
