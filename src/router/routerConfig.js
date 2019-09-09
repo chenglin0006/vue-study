@@ -10,7 +10,7 @@ export default [
     {
       path: '/goodsmanager/test',
       name: 'test',
-      component: Test
+      component: () => import('@/page/Test')
     },
     {
         path: '/goodsmanager/vendorManagement/basic/list',
@@ -20,7 +20,7 @@ export default [
     {
         path: '/goodsmanager/vendorManagement/logo/list',
         name: '品牌管理',
-        component: Test
+        component: () => import('@/page/Test')
     },
     {
         path: '/stockmanager/test',

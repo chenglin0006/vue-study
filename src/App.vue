@@ -9,14 +9,14 @@
                       <img src='./assets/logo.jpg' class="logo"/>
                       <span class="title" ref="memberTitle">百安居</span>
                   </div>
-                  <el-menu :default-active="activeHeadIndex" background-color="#000000" class="el-menu-demo" mode="horizontal" @select="handleSelect">
+                  <el-menu :default-active="activeHeadIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect">
                      <el-menu-item v-for="(ele,index) in menus" :key="index" :index='ele.url' @click="pushRouter(ele.defaultUrl)">{{ele.name}}</el-menu-item>
                   </el-menu>
                 </el-header>
                 <el-container>
                   <el-aside width="250px">
                       <el-menu
-                        default-active="2"
+                        :default-active="$route.path"
                         class="el-menu-vertical-demo"
                       >
                           <menu-tree :menus="leftMenus" @pushrouter="pushRouter"></menu-tree>
@@ -53,19 +53,7 @@
     data(){
       return {
         activeHeadIndex:'goodsmanager',
-        menus:this.menus,
-        tryData: [
-          {id: 0, show: true, children: [{id: 1},{id: 4}]},
-          {id: 2, show: false, children: [{id: 5}]},
-          {id: 3, show: true, children: [
-            {id: 6},
-            {id: 7},
-            {id: 8, show: false, children: [
-              {id: 9},
-              {id: 10}
-            ]}
-          ]}
-        ]
+        menus:this.menus
       }
     },
     created(){

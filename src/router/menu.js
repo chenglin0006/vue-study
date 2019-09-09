@@ -39,7 +39,7 @@ export default [
 		children: [
             {
                 name:'stock',
-                url:'stock',
+                url:'/stockmanager/test',
                 icon:'appstore',
                 defaultUrl:'/stockmanager/test',
             }
