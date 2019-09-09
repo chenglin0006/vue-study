@@ -1,7 +1,7 @@
 <template>
     <div class="hello">
         <h1>{{ msg }}</h1>
-        <router-link to="/test">test1</router-link>
+        <router-link to="/goodsmanager/test">test1</router-link>
         <div @click="testPush">test2</div>
         <div @click="changeUserNameFun">{{this.$store.state.home.userName}}</div>
     </div>
@@ -24,7 +24,7 @@ export default {
     },
     methods:{
         testPush:function(){
-          this.$router.push({path:'/test',query:{type:'push'}});
+          this.$router.push({path:'/goodsmanager/test',query:{type:'push'}});
         },
         changeUserNameFun: function () {
             this.message = '123123';

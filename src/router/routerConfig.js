@@ -1,5 +1,5 @@
-import HelloWorld from '@/components/HelloWorld'
-import Test from '@/components/Test'
+import HelloWorld from '@/page/HelloWorld'
+import Test from '@/page/Test'
 
 export default [
     {
@@ -8,8 +8,23 @@ export default [
       component: HelloWorld
     },
     {
-      path: '/test',
+      path: '/goodsmanager/test',
       name: 'test',
       component: Test
+    },
+    {
+        path: '/goodsmanager/vendorManagement/basic/list',
+        name: '供应商管理',
+        component: HelloWorld
+    },
+    {
+        path: '/goodsmanager/vendorManagement/logo/list',
+        name: '品牌管理',
+        component: Test
+    },
+    {
+        path: '/stockmanager/test',
+        name: '库存管理',
+        component: HelloWorld
     }
 ]

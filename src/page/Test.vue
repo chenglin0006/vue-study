@@ -1,8 +1,9 @@
 <template>
     <transition name="slide">
-        <div @click="clickFun">
+        <div>
             test-{{message}}
             <div>{{type}}</div>
+            <el-button @click="clickFun">click</el-button>
             <div>{{$store.state.home.userName}}</div>
             <div>
                 Clicked: {{ store.count }} times, count is {{ evenOrOdd }}.
