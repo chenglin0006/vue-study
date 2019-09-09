@@ -7,7 +7,7 @@ const packageConfig = require('../package.json')
 exports.assetsPath = function (_path) {
   const assetsSubDirectory = process.env.NODE_ENV === 'production'
     ? config.production.assetsSubDirectory
-    : config.dev.assetsSubDirectory
+    : config.development.assetsSubDirectory
 
   return path.posix.join(assetsSubDirectory, _path)
 }
