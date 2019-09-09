@@ -8,10 +8,13 @@
                 </template>
                 <menu-tree :menus="ele.children" @pushrouter="pushRouterFun"></menu-tree>
             </el-submenu>
-            <el-menu-item :index="ele.url" :key="ele.url" @click="pushRouterFun(ele,$event)" v-else>
-                <i class="el-icon-menu"></i>
-                <span slot="title">{{ele.name}}--</span>
-            </el-menu-item>
+            <router-link :to="ele.url" v-else>
+                <el-menu-item :index="ele.url" :key="ele.url">
+                    <i class="el-icon-menu"></i>
+                    <span slot="title">{{ele.name}}--</span>
+                </el-menu-item>
+            </router-link>
+            
         </span>
         <!-- <span>
             <el-submenu index="1">
