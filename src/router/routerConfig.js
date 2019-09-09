@@ -1,5 +1,5 @@
-import HelloWorld from '@/page/HelloWorld'
-import Test from '@/page/Test'
+import HelloWorld from '@/page/hello/HelloWorld'
+import Test from '@/page/test/Test'
 
 export default [
     {
@@ -10,7 +10,7 @@ export default [
     {
       path: '/goodsmanager/test',
       name: 'test',
-      component: () => import('@/page/Test')
+      component: () => import('@/page/test/Test')
     },
     {
         path: '/goodsmanager/vendorManagement/basic/list',
@@ -18,9 +18,14 @@ export default [
         component: HelloWorld
     },
     {
+        path: '/goodsmanager/vendorManagement/basic/edit',
+        name: '供应商管理编辑',
+        component: Test
+    },
+    {
         path: '/goodsmanager/vendorManagement/logo/list',
         name: '品牌管理',
-        component: () => import('@/page/Test')
+        component: Test
     },
     {
         path: '/stockmanager/test',

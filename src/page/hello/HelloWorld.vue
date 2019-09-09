@@ -24,7 +24,7 @@ export default {
     },
     methods:{
         testPush:function(){
-          this.$router.push({path:'/goodsmanager/test',query:{type:'push'}});
+          this.$router.push({path:'/goodsmanager/vendorManagement/basic/edit',query:{type:'push'}});
         },
         changeUserNameFun: function () {
             this.message = '123123';

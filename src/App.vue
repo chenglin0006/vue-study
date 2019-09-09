@@ -16,7 +16,7 @@
                 <el-container>
                   <el-aside width="250px">
                       <el-menu
-                        :default-active="$route.path"
+                        :default-active="activeLeftIndex"
                         class="el-menu-vertical-demo"
                       >
                           <menu-tree :menus="leftMenus" @pushrouter="pushRouter"></menu-tree>
@@ -50,10 +50,19 @@
             return list
         }
     },
+    watch: {
+      $route: function (newValue, oldValue) {
+          let path = newValue.path;
+          let key = path.replace(/\/((new)|(edit)|(detail)|(show))$/, '/list')
+          this.activeLeftIndex = key;
+      }
+    },
     data(){
       return {
         activeHeadIndex:'goodsmanager',
-        menus:this.menus
+        menus:this.menus,
+        question:'',
+        activeLeftIndex:'',
       }
     },
     created(){
@@ -76,6 +85,9 @@
         defaultSelectedKeys = pathArr;
       }
       this.activeHeadIndex = defaultSelectedHeadKeys[0];
+      let key = pathname.replace(/\/((new)|(edit)|(detail)|(show))$/, '/list')
+      this.activeLeftIndex = key;
+
     },
     mounted(){
       
