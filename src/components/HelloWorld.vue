@@ -36,7 +36,7 @@ export default {
                         pageSize:10,
                     },
                     type:'get',
-                    url:'http://product-dev.bnq.com.cn/productAdmin/skuBarcode/list',
+                    url:'/skuBarcode/list',
 
                 },
                 cb:(data)=>{

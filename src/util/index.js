@@ -1,6 +1,30 @@
+import __URL__ from '../../config/index'
+
+const getEnv = () => {
+    return process.env.NODE_ENV
+}
+const createUrl = request => {
+    let url = request.url;
+    let param = request.param;
+  
+    if (param) {
+      url = !url.includes("?") && url + "?";
+      for (let key of Object.keys(param)) {
+        url = url + key + "=" + param[key] + "&";
+      }
+      if (url.endsWith("&")) {
+        url = url.substring(0, url.length - 1);
+      }
+    }
+    return url;
+};
+
 const fetchFun = (args)=>{
-    let params = args.type.toUpperCase() === 'GET' ? null : args.param;
-    let requestUrl = args.url;
+    const PROTOCOL = `${window.location.protocol}//`;
+    let ENV = getEnv();
+    let params = args.type.toUpperCase() === "GET" ? null : args.param;
+    let url = args.type.toUpperCase() === "GET" ? createUrl(args) : args.isQuery ? createUrl(args) : args.url;
+    let requestUrl = __URL__[ENV]["apiUrl"] + __URL__[ENV]["apiUrlFilter"] + url;
     let headers = {
         'Accept': 'application/json'
     }
@@ -24,5 +48,6 @@ const fetchFun = (args)=>{
 }
 
 export {
+    getEnv,
     fetchFun
 }
