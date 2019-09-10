@@ -61,9 +61,12 @@ export default {
         ]),
         clickFun: function () {
             this.message = '123123';
-            this.$store.dispatch('incrementAsync').then((data)=>{
+            this.incrementAsync().then((data)=>{
                 console.log(data);
             })
+            // this.$store.dispatch('incrementAsync').then((data)=>{
+            //     console.log(data);
+            // })
         }
     }
 }

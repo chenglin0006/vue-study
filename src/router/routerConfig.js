@@ -1,5 +1,6 @@
 import HelloWorld from '@/page/hello/HelloWorld'
 import Test from '@/page/test/Test'
+import BrandList from '@/page/brand/BrandList'
 
 export default [
     {
@@ -25,7 +26,7 @@ export default [
     {
         path: '/goodsmanager/vendorManagement/logo/list',
         name: '品牌管理',
-        component: Test
+        component: BrandList
     },
     {
         path: '/stockmanager/test',
