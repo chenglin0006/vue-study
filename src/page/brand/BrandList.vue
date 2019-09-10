@@ -6,16 +6,19 @@
             @filtersubmit='filterSubmitFun'
             @filterreset='filterResetFun'
             ></filter-form>
+        <common-list></common-list>
     </div>   
 </template>
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
 import FilterForm from '../../components/filter/index'
+import CommonList from '../../components/list/index'
  
 export default {
     components:{
-        FilterForm
+        FilterForm,
+        CommonList
     },
     data(){
         return{
