@@ -1,6 +1,7 @@
 import HelloWorld from '@/page/hello/HelloWorld'
 import Test from '@/page/test/Test'
 import BrandList from '@/page/brand/BrandList'
+import SlotExample from '@/page/slot/SlotExample'
 
 export default [
     {
@@ -13,6 +14,11 @@ export default [
       name: 'test',
       component: () => import('@/page/test/Test')
     },
+    {
+        path: '/goodsmanager/slot',
+        name: 'slot',
+        component: SlotExample
+      },
     {
         path: '/goodsmanager/vendorManagement/basic/list',
         name: '供应商管理',

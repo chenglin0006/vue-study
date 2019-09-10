@@ -9,7 +9,11 @@ export default [
                 name:'test',
                 url:'/goodsmanager/test',
                 icon:'appstore',
-                defaultUrl:'/goodsmanager/test',
+            },
+            {
+                name:'slot',
+                url:'/goodsmanager/slot',
+                icon:'appstore'
             },
             {
                 name:'品牌管理',

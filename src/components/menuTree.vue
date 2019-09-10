@@ -11,7 +11,7 @@
             <router-link :to="ele.url" v-else>
                 <el-menu-item :index="ele.url" :key="ele.url">
                     <i class="el-icon-menu"></i>
-                    <span slot="title">{{ele.name}}--</span>
+                    <span slot="title">{{ele.name}}</span>
                 </el-menu-item>
             </router-link>
             
