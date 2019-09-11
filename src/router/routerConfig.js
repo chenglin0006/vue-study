@@ -2,6 +2,7 @@ import HelloWorld from '@/page/hello/HelloWorld'
 import Test from '@/page/test/Test'
 import BrandList from '@/page/brand/BrandList'
 import SlotExample from '@/page/slot/SlotExample'
+import Example from '@/page/example/Example'
 
 export default [
     {
@@ -12,7 +13,7 @@ export default [
     {
       path: '/goodsmanager/test',
       name: 'test',
-      component: () => import('@/page/test/Test')
+      component: Example
     },
     {
         path: '/goodsmanager/slot',
