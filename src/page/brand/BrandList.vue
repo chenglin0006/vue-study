@@ -81,10 +81,21 @@ export default {
     },
     computed: {
         ...mapGetters([
-            'evenOrOdd'
+            'evenOrOdd',
+            'yesOrNoEnum'
         ]),
     },
+    watch:{
+        yesOrNoEnum:function (newValue, oldValue){
+            filterData.forEach((ele)=>{
+                if(ele.id === 'hasLogo'){
+                    ele.data = newValue;
+                }
+            })
+        }
+    },
     mounted(){
+        this.$store.dispatch('getYesOrNo');
     },
     methods: {
         ...mapActions([

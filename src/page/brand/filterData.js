@@ -13,6 +13,6 @@ export const filterData = [
         id: 'hasLogo',
         name: '水印logo',
         type:'select',
-        data:[{name:'有',id:1},{name:'无',id:0}]
+        data:[]
     }
 ]
