@@ -169,11 +169,13 @@ export default {
                     title:'操作',
                     dataIndex:'edit',
                     type:'selfComponent',
-                    component:CmpEdit
+                    component:CmpEdit,
+                    comName:'action-column',
                 },{
                     title:'操作自定义',
                     dataIndex:'self',
                     type:'selfComponent',
+                    comName:'cmp-self',
                     component:Vue.component(`cmp-self`, {
                         props: ['row'],
                         template: '<div><el-button @click="clickTest">{{row.province}}</el-button></div>',

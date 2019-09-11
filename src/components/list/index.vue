@@ -8,7 +8,7 @@
                 <el-table-column v-if="item.type==='selfComponent'" :key="item.dataIndex"
                     :label="item.title">
                     <template slot-scope="scope">
-                        <component :is="getComponentName(item.dataIndex)" :row="scope.row"></component>
+                        <component :is="getComponentName(item.comName)" :row="scope.row"></component>
                     </template>
                 </el-table-column>
                 <el-table-column v-else :key="item.dataIndex" :label="item.title" :prop="item.dataIndex">
@@ -37,8 +37,8 @@ export default {
     created(){
     },
     methods: {
-        getComponentName (dataIndex) {
-            return `cmp-${dataIndex}`
+        getComponentName (comName) {
+            return comName
         }
     }
 }
