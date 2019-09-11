@@ -1,5 +1,11 @@
 <template>
     <div>
+        <filter-form 
+            :filterModal="filterModal" 
+            :filterData="filterData" 
+            @filtersubmit='filterSubmitFun'
+            @filterreset='filterResetFun'
+            ></filter-form>
         <el-table
             :data="tableData"
             border
@@ -30,11 +36,13 @@
 
 <script>
 import Vue from 'vue'
+import FilterForm from '../filter/index'
 
 export default {
     name: 'CommonList',
-    props:['colunmns','tableData','totalCount'],
+    props:['colunmns','tableData','totalCount','filterModal','filterData'],
     components:{
+        FilterForm
     },
     data() {
         return {
@@ -72,7 +80,6 @@ export default {
             this.$emit('get-common-list',this.searchParams);
         },
         handleCurrentChange(val) {
-            debugger
             console.log(`当前页: ${val}`);
             let currentPage = val;
             let searchParams = this.searchParams;
@@ -81,6 +88,24 @@ export default {
             }
             this.curPage = currentPage;
             this.searchParams = searchParams;
+            this.$emit('get-common-list',this.searchParams);
+        },
+        filterSubmitFun: function(values){
+            let params = {
+                curPage: 1,
+                pageSize: this.pageSize
+            }
+            params = Object.assign({},params,values);
+            this.searchParams = params;
+            this.$emit('get-common-list',this.searchParams);
+        },
+        filterResetFun: function(values){
+            let params = {
+                curPage: 1,
+                pageSize: this.pageSize
+            }
+            params = Object.assign({},params,values);
+            this.searchParams = params;
             this.$emit('get-common-list',this.searchParams);
         }
     }
