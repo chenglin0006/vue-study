@@ -15,6 +15,16 @@
                 </el-table-column>
             </template>
         </el-table>
+        <el-pagination
+            :small="false"
+            @size-change="handleSizeChange"
+            @current-change="handleCurrentChange"
+            :current-page.sync="curPage"
+            :page-sizes="[10, 20, 30, 40]"
+            :page-size="pageSize"
+            layout="total,sizes, prev, pager, next"
+            :total="totalCount">
+        </el-pagination>
     </div>
 </template>
 
@@ -23,12 +33,14 @@ import Vue from 'vue'
 
 export default {
     name: 'CommonList',
-    props:['colunmns','tableData'],
+    props:['colunmns','tableData','totalCount'],
     components:{
     },
     data() {
         return {
-            
+            curPage: 1,
+			pageSize: 10,
+            searchParams: ''
         };
     },
     computed: {
@@ -36,9 +48,40 @@ export default {
     },
     created(){
     },
+    mounted(){
+        this.$emit('get-common-list',{
+            curPage:this.curPage,
+            pageSize:this.pageSize
+        });
+        this.searchParams={
+            curPage: this.curPage,
+            pageSize: this.pageSize
+		};
+    },
     methods: {
         getComponentName (comName) {
             return comName
+        },
+        handleSizeChange(val) {
+            let searchParams = this.searchParams;
+            if(searchParams) {
+                searchParams['pageSize'] = val;
+            }
+            this.pageSize = val;
+            this.searchParams = searchParams;
+            this.$emit('get-common-list',this.searchParams);
+        },
+        handleCurrentChange(val) {
+            debugger
+            console.log(`当前页: ${val}`);
+            let currentPage = val;
+            let searchParams = this.searchParams;
+            if(searchParams) {
+                searchParams['curPage'] = currentPage;
+            }
+            this.curPage = currentPage;
+            this.searchParams = searchParams;
+            this.$emit('get-common-list',this.searchParams);
         }
     }
 }

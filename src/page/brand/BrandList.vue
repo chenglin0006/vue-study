@@ -6,7 +6,12 @@
             @filtersubmit='filterSubmitFun'
             @filterreset='filterResetFun'
             ></filter-form>
-        <common-list :colunmns="colunmns" :tableData="tableData"></common-list>
+        <common-list 
+            @get-common-list="getList" 
+            :colunmns="colunmns" 
+            :tableData="tableData"
+            :totalCount="totalCount"
+            ></common-list>
     </div>   
 </template>
 
@@ -16,6 +21,7 @@ import { mapGetters, mapActions } from 'vuex'
 import FilterForm from '../../components/filter/index'
 import CommonList from '../../components/list/index'
 import CmpEdit from './SelfEdit.js'
+import * as Util from '../../util/index'
  
 export default {
     components:{
@@ -148,14 +154,15 @@ export default {
                 },
             ],
             colunmns:[{
-                    title:'日期',
-                    dataIndex:'date',
+                    title: '品牌',
+                    dataIndex: 'brandName',
+                },
+                {
+                    title: '操作时间',
+                    dataIndex: 'modifyTime'
                 },{
-                    title:'姓名',
-                    dataIndex:'name'
-                },{
-                    title:'省份',
-                    dataIndex:'province'
+                    title: '操作人',
+                    dataIndex: 'modifierIdStr'
                 },{
                     title:'市区',
                     dataIndex:'city'
@@ -178,7 +185,7 @@ export default {
                     comName:'cmp-self',
                     component:Vue.component(`cmp-self`, {
                         props: ['row'],
-                        template: '<div><el-button @click="clickTest">{{row.province}}</el-button></div>',
+                        template: '<div><el-button @click="clickTest">{{row.brandName}}</el-button></div>',
                         methods:{
                             clickTest:function(){
                                 alert(this.row.address);
@@ -186,39 +193,9 @@ export default {
                         }
                     })
                 }],
-            tableData: [{
-                id:1,
-                date: '2016-05-02',
-                name: '王小虎',
-                province: '上海',
-                city: '普陀区',
-                address: '上海市普陀区金沙江路 1518 弄',
-                zip: 200333
-            }, {
-                id:2,
-                date: '2016-05-04',
-                name: '王小虎',
-                province: '上海',
-                city: '普陀区',
-                address: '上海市普陀区金沙江路 1517 弄',
-                zip: 200333
-            }, {
-                id:3,
-                date: '2016-05-01',
-                name: '王小虎',
-                province: '上海',
-                city: '普陀区',
-                address: '上海市普陀区金沙江路 1519 弄',
-                zip: 200333
-            }, {
-                id:4,
-                date: '2016-05-03',
-                name: '王小虎',
-                province: '上海',
-                city: '普陀区',
-                address: '上海市普陀区金沙江路 1516 弄',
-                zip: 200333
-            }]
+            tableData: [],
+            searchParams:{},
+            totalCount:0
         }
     },
     computed: {
@@ -227,7 +204,6 @@ export default {
         ]),
     },
     mounted(){
-        
     },
     methods: {
         ...mapActions([
@@ -236,6 +212,19 @@ export default {
             'incrementIfOdd',
             'incrementAsync'
         ]),
+        getList: async function(params){
+            this.searchParams = params;
+            let data = await Util.fetchFun(
+                {
+                    param:params,
+                    type:'get',
+                    url:'/brand/list',
+                }
+            )
+            console.log(data,'-------');
+            this.tableData = data.result.data;
+            this.totalCount = data.result.page.totalNum;
+        },
         clickFun: function () {
             this.message = '123123';
             this.incrementAsync().then((data)=>{

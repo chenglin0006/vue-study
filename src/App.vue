@@ -22,7 +22,9 @@
                           <menu-tree :menus="leftMenus" @pushrouter="pushRouter"></menu-tree>
                       </el-menu>
                   </el-aside>
-                  <router-view></router-view>
+                  <div class="main-container">
+                      <router-view></router-view>
+                  </div>
                 </el-container>
             </el-container>
         </div> 
@@ -107,4 +109,7 @@
 
 <style lang="less">
   @import url('./index.less');
+  .main-container{
+    margin:12px;
+  }
 </style>
