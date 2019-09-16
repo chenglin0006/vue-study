@@ -55,9 +55,11 @@ export default {
             if(ele.id === 'test'){
                 ele.component = Vue.component(`cmp-self`, {
                     props: ['newModal'],
-                    template: '<div><el-input v-model="newModal.test"></el-input><el-input v-model="newModal.test"></el-input></div>',
+                    template: '<div><el-input v-model="newModal.test"></el-input><el-button @click="testClick" size="small">test</el-button></div>',
                     methods:{
-                        
+                        testClick:function(){
+                            console.log(this.newModal.test)
+                        }
                     }
                 });
             }
