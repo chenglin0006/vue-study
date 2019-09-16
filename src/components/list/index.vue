@@ -6,12 +6,21 @@
             @filtersubmit='filterSubmitFun'
             @filterreset='filterResetFun'
             ></filter-form>
+        <div class="action-btns">
+            <el-button :type="item.primary?'primary':''" v-for="(item,index) in actionBtns" :key="index" @click="item.clickHandle(multipleSelection)">{{item.name}}</el-button>
+        </div>
         <el-table
             :data="tableData"
             border
             stripe
             width="100%"
+            @selection-change="handleSelectionChange">
             >
+            <el-table-column
+                v-if="showRowSelection"
+                type="selection"
+                width="55">
+            </el-table-column>
             <template v-for="item in colunmns">
                 <el-table-column  v-if="item.type==='selfComponent'" :key="item.dataIndex"
                     :label="item.title"
@@ -23,6 +32,18 @@
                     </template>
                 </el-table-column>
                 <el-table-column v-else :key="item.dataIndex" :label="item.title" :prop="item.dataIndex" :fixed="item.fixed" :width="item.width">
+                    <template slot-scope="scope">
+                        <span v-if="item.maxSize&&scope.row[item.dataIndex].length>item.maxSize">
+                            <el-popover
+                                placement="top-start"
+                                width="200"
+                                trigger="hover"
+                                :content="scope.row[item.dataIndex]">
+                                <span slot="reference">{{scope.row[item.dataIndex].substring(0,item.maxSize)+'...'}}</span>
+                            </el-popover>
+                        </span>
+                        <span v-else>{{scope.row[item.dataIndex]}}</span>
+                    </template>
                 </el-table-column>
             </template>
         </el-table>
@@ -42,10 +63,11 @@
 <script>
 import Vue from 'vue'
 import FilterForm from '../filter/index'
+import * as Util from '../../util/index'
 
 export default {
     name: 'CommonList',
-    props:['colunmns','tableData','totalCount','filterModal','filterData','scrollX'],
+    props:['colunmns','tableData','totalCount','filterModal','filterData','scrollX','showRowSelection','actionBtns'],
     components:{
         FilterForm
     },
@@ -53,7 +75,8 @@ export default {
         return {
             curPage: 1,
 			pageSize: 10,
-            searchParams: ''
+            searchParams: '',
+            multipleSelection:[],
         };
     },
     computed: {
@@ -112,6 +135,9 @@ export default {
             params = Object.assign({},params,values);
             this.searchParams = params;
             this.$emit('get-common-list',this.searchParams);
+        },
+        handleSelectionChange: function(val) {
+            this.multipleSelection = val;
         }
     }
 }

@@ -1,3 +1,4 @@
+import  Vue from "vue";
 import __URL__ from '../../config/index'
 
 const getEnv = () => {

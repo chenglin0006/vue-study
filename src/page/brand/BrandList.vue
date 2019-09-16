@@ -8,6 +8,8 @@
             :tableData="tableData"
             :totalCount="totalCount"
             :scrollX="800"
+            :showRowSelection=true
+            :actionBtns="actionBtns"
             ></common-list>
     </div>   
 </template>
@@ -29,6 +31,9 @@ export default {
     },
     data(){
         return{
+            actionBtns:[{name:'批量删除',primary:true,clickHandle:(rows)=>{
+                console.log(rows);
+            }}],
             filterModal:{
                 brandNameLike:'',
                 brandNameEnLike:'',
@@ -40,6 +45,7 @@ export default {
                     dataIndex: 'brandName',
                     fixed:'left',
                     width:100,
+                    maxSize:20
                 },
                 {
                     title: '操作时间',
