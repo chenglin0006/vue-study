@@ -31,13 +31,15 @@ export default {
     },
     data(){
         return{
-            actionBtns:[{name:'批量删除',primary:true,clickHandle:(rows)=>{
+            actionBtns:[{name:'新增',primary:true,clickHandle:(rows)=>{
+                this.$router.push({path:'./edit'});
+            }},{name:'批量删除',primary:true,clickHandle:(rows)=>{
                 console.log(rows);
             }}],
             filterModal:{
                 brandNameLike:'',
                 brandNameEnLike:'',
-                hasLogo:''
+                hasLogo:0
             },
             filterData:filterData,
             colunmns:[{
@@ -111,6 +113,9 @@ export default {
     },
     watch:{
         yesOrNoEnum:function (newValue, oldValue){
+            newValue&&newValue.forEach((ele)=>{
+                ele.id = ele.index;
+            })
             filterData.forEach((ele)=>{
                 if(ele.id === 'hasLogo'){
                     ele.data = newValue;
