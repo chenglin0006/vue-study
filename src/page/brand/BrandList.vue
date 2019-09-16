@@ -7,6 +7,7 @@
             :colunmns="colunmns" 
             :tableData="tableData"
             :totalCount="totalCount"
+            :scrollX="800"
             ></common-list>
     </div>   
 </template>
@@ -37,33 +38,50 @@ export default {
             colunmns:[{
                     title: '品牌',
                     dataIndex: 'brandName',
+                    fixed:'left',
+                    width:100,
                 },
                 {
                     title: '操作时间',
-                    dataIndex: 'modifyTime'
+                    dataIndex: 'modifyTime',
+                    width:100,
                 },{
                     title: '操作人',
-                    dataIndex: 'modifierIdStr'
+                    dataIndex: 'modifierIdStr',
+                    width:100,
                 },{
                     title:'市区',
-                    dataIndex:'city'
+                    dataIndex:'city1',
+                    width:100,
                 },{
                     title:'地址',
-                    dataIndex:'address'
+                    dataIndex:'address1',
+                    width:100,
+                },{
+                    title:'市区',
+                    dataIndex:'city4',
+                    width:100,
+                },{
+                    title:'地址',
+                    dataIndex:'address4',
+                    width:100,
                 },{
                     title:'邮编',
-                    dataIndex:'zip'
+                    dataIndex:'zip3',
+                    width:100,
                 },{
                     title:'操作',
                     dataIndex:'edit',
                     type:'selfComponent',
                     component:CmpEdit,
                     comName:'action-column',
+                    width:100,
                 },{
                     title:'操作自定义',
                     dataIndex:'self',
                     type:'selfComponent',
                     comName:'cmp-self',
+                    fixed:'right',
                     component:Vue.component(`cmp-self`, {
                         props: ['row'],
                         template: '<div><el-button @click="clickTest">{{row.brandName}}</el-button></div>',
@@ -116,15 +134,6 @@ export default {
             console.log(data,'-------');
             this.tableData = data.result.data;
             this.totalCount = data.result.page.totalNum;
-        },
-        clickFun: function () {
-            this.message = '123123';
-            this.incrementAsync().then((data)=>{
-                console.log(data);
-            })
-            // this.$store.dispatch('incrementAsync').then((data)=>{
-            //     console.log(data);
-            // })
         }
     }
 }

@@ -9,15 +9,20 @@
         <el-table
             :data="tableData"
             border
-            style="width: 100%">
+            stripe
+            width="100%"
+            >
             <template v-for="item in colunmns">
-                <el-table-column v-if="item.type==='selfComponent'" :key="item.dataIndex"
-                    :label="item.title">
+                <el-table-column  v-if="item.type==='selfComponent'" :key="item.dataIndex"
+                    :label="item.title"
+                    :fixed="item.fixed"
+                    :width="item.width"
+                    >
                     <template slot-scope="scope">
                         <component :is="getComponentName(item.comName)" :row="scope.row"></component>
                     </template>
                 </el-table-column>
-                <el-table-column v-else :key="item.dataIndex" :label="item.title" :prop="item.dataIndex">
+                <el-table-column v-else :key="item.dataIndex" :label="item.title" :prop="item.dataIndex" :fixed="item.fixed" :width="item.width">
                 </el-table-column>
             </template>
         </el-table>
@@ -40,7 +45,7 @@ import FilterForm from '../filter/index'
 
 export default {
     name: 'CommonList',
-    props:['colunmns','tableData','totalCount','filterModal','filterData'],
+    props:['colunmns','tableData','totalCount','filterModal','filterData','scrollX'],
     components:{
         FilterForm
     },
