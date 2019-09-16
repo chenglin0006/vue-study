@@ -53,6 +53,9 @@
                     <el-radio v-for="item in ele.data" :label="item.id" 
                     :key="item.id">{{item.name}}</el-radio>
                 </el-radio-group>
+                <template v-if="ele.type==='selfComponent'">
+                    <component :is="getComponentName(ele.comName)" :newModal="newModal"></component>
+                </template>
             </el-form-item>
             <el-form-item>
                 <el-button type="primary" @click="submitForm('newModal')">提交</el-button>
@@ -79,6 +82,9 @@ export default {
     mounted(){
     },
     methods: {
+        getComponentName (comName) {
+            return comName
+        },
         submitForm(formName) {
             this.$refs[formName].validate((valid,values) => {
                 if (valid) {

@@ -1,3 +1,4 @@
+import CmpEdit from './SelfEdit.js'
 export const newData = [
     {
         id: 'brandNameLike',
@@ -15,5 +16,11 @@ export const newData = [
         name: '水印logo',
         type:'select',
         data:[]
+    },
+    {
+        id: 'test',
+        name: 'test',
+        type:'selfComponent',
+        comName:'cmp-self',
     }
 ]

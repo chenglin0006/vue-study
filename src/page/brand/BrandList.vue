@@ -22,12 +22,12 @@ import CommonList from '../../components/list/index'
 import CmpEdit from './SelfEdit.js'
 import * as Util from '../../util/index'
 import { filterData } from './filterData';
+import { newData } from './newData';
  
 export default {
     components:{
         FilterForm,
         CommonList,
-        CmpEdit
     },
     data(){
         return{

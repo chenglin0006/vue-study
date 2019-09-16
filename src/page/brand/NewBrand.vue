@@ -27,7 +27,8 @@ export default {
             newModal:{
                 brandNameLike:'',
                 brandNameEnLike:'',
-                hasLogo:0
+                hasLogo:0,
+                test:'123'
             },
             newData:newData
         }
@@ -48,6 +49,19 @@ export default {
                 }
             })
         }
+    },
+    created(){
+        newData.forEach((ele)=>{
+            if(ele.id === 'test'){
+                ele.component = Vue.component(`cmp-self`, {
+                    props: ['newModal'],
+                    template: '<div><el-input v-model="newModal.test"></el-input><el-input v-model="newModal.test"></el-input></div>',
+                    methods:{
+                        
+                    }
+                });
+            }
+        })
     },
     mounted(){
         this.getYesOrNo();
