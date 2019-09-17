@@ -36,6 +36,7 @@
 <script>
   import menus from './router/menu'
   import MenuTree from './components/menuTree'
+  import _ from 'lodash'
   export default {
     name: 'App',
     components:{
@@ -92,7 +93,7 @@
 
     },
     mounted(){
-      
+        this._setHeight();
     },
     methods:{
       handleSelect(key, keyPath) {
@@ -102,7 +103,20 @@
       },
       pushRouter(url){
         this.$router.push({path:url})
+      },
+      _setHeight(){
+        let windowHeight = window.innerHeight || document.body.offsetHeight
+        let right = document.querySelector(".main-container");
+        let left = document.querySelector(".el-aside");
+        right.style.height = windowHeight - 60 + 'px'
+        left.style.height = windowHeight - 60 + 'px'
+      },
+      _listener(){
+        window.addEventListener('resize',_.debounce((e,c,d)=>{
+          this._setHeight()
+        },251))
       }
+      
     }
   }
 </script>
@@ -110,6 +124,16 @@
 <style lang="less">
   @import url('./index.less');
   .main-container{
-    margin:12px;
+    padding:12px;
+  }
+  .el-container.is-vertical{
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    .main-container{
+        overflow: scroll;
+    }
   }
 </style>
