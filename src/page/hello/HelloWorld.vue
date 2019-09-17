@@ -3,7 +3,7 @@
         <h1>{{ msg }}</h1>
         <router-link to="/goodsmanager/test">test1</router-link>
         <div @click="testPush">test2</div>
-        <div @click="changeUserNameFun">{{this.$store.state.home.userName}}</div>
+        <div @click="changeUserNameFun">{{$store.state.home.userName}}</div>
     </div>
 </template>
 
